@@ -13,7 +13,7 @@ It is a tool to extract the files from the file container made ​​using the p
  * extracting containers
 
 ### Usage
-**Tested only on Python 2.7.3**
+**Tested only on Python 2.7.3 and on last version of EVB (6.70 build 20130604)**
 
 `python evbe.py [-h] [-e] [-o output_directory] file`
 
