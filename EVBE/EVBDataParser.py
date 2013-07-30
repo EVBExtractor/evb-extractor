@@ -1,6 +1,6 @@
 #-*- coding: utf-8 -*-
 """
-    Copyright (C) 2013, Roman Bondarenko
+    Copyright (C) 2013 Roman Bondarenko
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -20,6 +20,20 @@
     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
     SOFTWARE.
 """
+from struct import unpack_from
 
 __author__ = 'Roman Bondarenko'
 __contact__ = 'roman@reu.org.ua'
+
+
+class DataParser(object):
+    def __init__(self, obj, data, fmt, offset=0, str_size=-1):
+        format_ = '<' + ''.join([f for f, _ in fmt])
+        if str_size >= 0:
+            format_ = format_ % str_size
+        unpacked = unpack_from(format_, data, offset)
+        for i in range(len(fmt)):
+            name = fmt[i][1]
+            if name == '':
+                name = 'some_value_%d' % i
+            setattr(obj, name, unpacked[i])
