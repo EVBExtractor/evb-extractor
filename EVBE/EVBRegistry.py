@@ -20,48 +20,25 @@
     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
     SOFTWARE.
 """
-import os
-try:
-    from pefile import PE
-except ImportError:
-    raise ImportError('You need install pefile library http://code.google.com/p/pefile')
 
 __author__ = 'Roman Bondarenko'
 __contact__ = 'roman@reu.org.ua'
 
+NODE = [
 
-class EVBFile(object):
-    def __init__(self, name):
-        self.name = name
-        self.data = None
-        self.offset = 0x48
+]
 
-    # TODO: Add generic search for container
-    def read(self):
-        try:
-            pe = PE(self.name, fast_load=True)
-        except:
-            print('File %s invalid' % self.name)
-            return False
 
-        if not pe.is_exe():
-            print('This file is not exe')
-            pe.close()
-            return False
+class Registry(object):
+    """
 
-        section = None
-        for s in pe.sections:
-            if s.Name == '.enigma1':
-                section = s
-                break
+    """
+    class Node(object):
+        """
 
-        if section is None:
-            print('This file is not Enigma Virtual Box container')
-            pe.close()
-            return False
+        """
+        def __init__(self, data, offset):
+            pass
 
-        self.data = pe.get_data(section.VirtualAddress, section.SizeOfRawData)
-
-        pe.close()
-
-        return True
+    def __init__(self, data, offset):
+        pass
