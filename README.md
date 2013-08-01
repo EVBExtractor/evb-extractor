@@ -9,10 +9,10 @@ It is a tool to extract the files from the file container made ​​using the p
 
 ### RoadMap
  * extracting registry
- * extracting containers
+ * extracting data from external packages
 
 ### Requires
-[pefile](http://code.google.com/p/pefile)
+[pefile](http://code.google.com/p/pefile) is a Python module to read and work with PE (Portable Executable) files
 
 ### Usage
 **Tested only on Python 2.7.3 and on last version of EVB (6.70 build 20130604)**
