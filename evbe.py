@@ -25,6 +25,7 @@ import sys
 from argparse import ArgumentParser
 from EVBE.EVBFile import EVBFile
 from EVBE.EVBContainer import Container
+from aplib import aPLib
 
 __version__ = '1.0.9'
 __author__ = 'Roman Bondarenko'
@@ -47,6 +48,7 @@ if __name__ == '__main__':
         if not args.e:
             container.info()
         else:
+            offset = 0
             output = args.output_directory
             if output is None:
                 output = args.file[:-4] + '_data'
@@ -58,6 +60,15 @@ if __name__ == '__main__':
                     if not os.path.exists(name):
                         os.mkdir(name)
                 else:
-                    with open(name, 'wb+') as f:
+                    with open(name, 'wb') as f:
                         offset, size = fs['offset'], fs['size']
-                        f.write(file_.data[offset:offset + size])
+                        try:
+                            data = file_.data[offset:offset + size]
+                            offset += size
+                            if container.header.compress_files == 1:
+                                a = aPLib(data)
+                                data = a.depack()
+                        except Exception as e:
+                            print(e)
+                        else:
+                            f.write(data)

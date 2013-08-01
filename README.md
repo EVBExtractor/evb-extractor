@@ -3,14 +3,16 @@
 ### Overview
 It is a tool to extract the files from the file container made ​​using the program [Enigma Virtual Box](http://enigmaprotector.com/en/aboutvb.html)
 
-## Features
- * shows the information of options with which to make the file
- * extract not compressed file
+### Features
+ * displays information about the options with which the file was created
+ * extract files
 
 ### RoadMap
- * extracting compressed files
  * extracting registry
  * extracting containers
+
+### Requires
+[pefile](http://code.google.com/p/pefile)
 
 ### Usage
 **Tested only on Python 2.7.3 and on last version of EVB (6.70 build 20130604)**
